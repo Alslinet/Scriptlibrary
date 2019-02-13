@@ -5,5 +5,5 @@ Function Get-ApplockerPolicyRemote ($Computer, [bool]$GPUpdate) {
     Invoke-Command $Computer{
         if ($GPUpdate) {gpupdate /force}
         (Get-ApplockerPolicy -effective).RuleCollections
-    } > C:\Data\test.txt; ise C:\Data\test.txt
+    } > C:\test.txt; ise C:\test.txt
 }
