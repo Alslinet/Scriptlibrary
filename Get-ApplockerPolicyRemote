@@ -1,0 +1,9 @@
+# Function gets effective applocker policy and optionally runs gpupdate first from a remote machine
+# Usage:
+# Get-ApplockerPolicyRemote -Computer "Computername" -GPUpdate $false
+Function Get-ApplockerPolicyRemote ($Computer, [bool]$GPUpdate) {
+    Invoke-Command $Computer{
+        if ($GPUpdate) {gpupdate /force}
+        (Get-ApplockerPolicy -effective).RuleCollections
+    } > C:\Data\test.txt; ise C:\Data\test.txt
+}
